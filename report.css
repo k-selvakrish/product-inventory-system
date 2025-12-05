@@ -1,0 +1,155 @@
+/* dashboard.css */
+
+/* ---------------- Body & Container ---------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    padding-top: 10px; /* space for navbar */
+}
+
+.container {
+    max-width: 1000px;
+}
+
+/* ---------------- Navbar & Sidebar ---------------- */
+nav, .sidebar {
+    background-color: #2f3640;
+    color: #fff;
+}
+
+.sidebar {
+    width: 230px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top: 70px;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #3d3d3d;
+    border-radius: 4px;
+}
+
+/* ---------------- Headings ---------------- */
+h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-weight: 500;
+}
+
+/* ---------------- Tabs ---------------- */
+.nav-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    margin-right: 2px;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #fff;
+    color: #0d6efd;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+/* ---------------- Filter Row ---------------- */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filters select,
+.filters input {
+    width: auto;
+    min-width: 150px;
+}
+
+/* ---------------- Tables ---------------- */
+table.dataTable {
+    border-collapse: collapse !important;
+    width: 100% !important;
+}
+
+table.dataTable thead th {
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
+}
+
+table.dataTable tbody td {
+    padding: 8px;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* DataTables Buttons */
+.dt-buttons {
+    margin-bottom: 10px;
+}
+
+.dt-button {
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dt-button:hover {
+    background-color: #0b5ed7;
+}
+
+/* ---------------- Responsive ---------------- */
+@media screen and (max-width: 991px) {
+    main.container {
+        margin-left: 0 !important;
+        padding: 15px;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filters select,
+    .filters input,
+    .filters button {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-right: none;
+        padding-top: 0;
+    }
+}

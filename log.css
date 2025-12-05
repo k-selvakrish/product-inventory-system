@@ -1,0 +1,41 @@
+body {
+  background-image: url("../Img/lakshmi_super_market_29.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: black; /* fallback color */
+}
+
+.card {
+  max-width: 400px;
+  margin: 170px auto 30px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px black;
+  background: white;
+}
+
+.card img {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.input input {
+  margin-bottom: 15px;
+  height: 45px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  margin-top: 0;
+}

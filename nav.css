@@ -1,0 +1,41 @@
+/* Navbar text hover animation */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffb400;
+    transform: translateY(-3px) scale(1.2);
+    text-shadow: 0 0 8px #ffb400, 0 0 15px #ff4d6d;
+}
+
+/* Navbar brand 3D effect */
+.navbar-text {
+    font-weight: 900;
+    font-size: 1.3rem;
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+    -webkit-background-clip: text;  /* Chrome/Safari */
+    -webkit-text-fill-color: transparent; /* Chrome/Safari */
+    background-clip: text;           /* Firefox support */
+    color: transparent;               /* fallback */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+
+.navbar-text:hover {
+    transform: rotateX(10deg) rotateY(10deg) scale(1.1);
+}
+
+/* Logout button hover */
+.btn-warning:hover {
+    background-color: #ffc107;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.5);
+}
+
+/* Navbar background shadow */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}

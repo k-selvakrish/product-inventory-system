@@ -1,0 +1,43 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+
+
+/* Main content */
+main {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+/* Customer Form */
+.customer-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.customer-form h5 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.customer-form label {
+  font-weight: 500;
+}
+.customer-form .btn-success {
+  width: 150px;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  main {
+    margin-left: 0;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}

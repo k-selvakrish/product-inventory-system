@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Purchase Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/purchase.css') }}" />
+</head>
+<body>
+  {% include 'nav.html' %}
+  {% include 'sidebar.html' %}
+
+  <!-- Main Content -->
+<main class="container mt-5 pt-5" style="margin-left: 250px;">
+  <section style="max-width: 1000px;">
+    <button id="exportCsv" class="btn btn-outline-primary btn-sm">
+          <i class="fa fa-file-csv"></i> Export CSV
+        </button>
+
+  <main class="container mt-5 pt-4">
+    <div class="row mb-3">
+      <!-- <div class="col-md-9">
+        <h3>Purchase Dashboard</h3>
+      </div> -->
+      <div class="col-md-3 text-end">
+        <!-- <button id="exportCsv" class="btn btn-outline-primary btn-sm">
+          <i class="fa fa-file-csv"></i> Export CSV
+        </button> -->
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4" id="summaryCards">
+      <div class="col-sm-6 col-md-3">
+        <div class="card summary-card text-center p-3">
+          <i class="fa-solid fa-coins fa-2x mb-2"></i>
+          <h6>Total Purchases</h6>
+          <strong id="totalAmount">₹0</strong>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="card summary-card text-center p-3">
+          <i class="fa-solid fa-hourglass-half fa-2x mb-2"></i>
+          <h6>Pending Orders</h6>
+          <strong id="pendingOrders">0</strong>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="card summary-card text-center p-3">
+          <i class="fa-solid fa-check-circle fa-2x mb-2"></i>
+          <h6>Completed Orders</h6>
+          <strong id="completedOrders">0</strong>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="card summary-card text-center p-3">
+          <i class="fa-solid fa-store fa-2x mb-2"></i>
+          <h6>Suppliers</h6>
+          <strong id="supplierCount">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card mb-4 p-3">
+      <h6>Monthly Purchases</h6>
+      <canvas id="purchaseChart" height="80"></canvas>
+    </div> -->
+
+    <div class="card mb-4 p-3">
+      <h6>Add / Edit Purchase</h6>
+      <form id="purchaseForm">
+        <input type="hidden" id="editId" value="" />
+        <div class="row g-2 align-items-end">
+          <div class="col-md-2">
+            <label class="form-label">Invoice No</label>
+            <input type="text" id="invoiceNo" class="form-control" placeholder="INV-..." />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Supplier</label>
+            <input type="text" id="supplier" class="form-control" required />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Product</label>
+            <input type="text" id="product" class="form-control" required />
+          </div>
+          <div class="col-md-1">
+            <label class="form-label">Quantity</label>
+            <input type="number" id="quantity" class="form-control" min="1" value="1" required />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Unit Price</label>
+            <input type="number" id="unitPrice" class="form-control" min="0" value="0" required />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Date</label>
+            <input type="date" id="purchaseDate" class="form-control" required />
+          </div>
+          <div class="col-md-1">
+            <label class="form-label">Payment</label>
+            <select id="paymentStatus" class="form-select">
+              <option value="Pending">Pending</option>
+              <option value="Paid">Paid</option>
+              <option value="Overdue">Overdue</option>
+            </select>
+          </div>
+          <div class="col-md-1">
+            <label class="form-label">Delivery</label>
+            <select id="deliveryStatus" class="form-select">
+              <option value="Not Delivered">Not Delivered</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Notes</label>
+            <textarea id="notes" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100" id="submitBtn">Add Purchase</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-secondary w-100" id="resetBtn">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="d-flex align-items-center mb-2 gap-2">
+      <input id="searchInput" class="form-control w-25 "  placeholder="Search supplier/product..." />
+      <select id="filterStatus" class="form-select w-25">
+        <option value="">All statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Paid">Paid</option>
+        <option value="Overdue">Overdue</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Not Delivered">Not Delivered</option>
+      </select>
+      <div class="ms-auto">
+        <small class="text-muted">Total rows: <span id="rowCount">0</span></small>
+      </div>
+    </div>
+
+    <div class="card p-2">
+      <table class="table table-sm table-hover mb-0" id="purchaseTable">
+        <thead class="table-dark">
+          <tr>
+            <th>Invoice</th>
+            <th>Supplier</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Payment</th>
+            <th>Delivery</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </main>
+  </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/purchase.js') }}"></script>
+</body>
+</html>

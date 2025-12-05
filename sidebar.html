@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Example</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar bg-dark vh-100 position-fixed top-0 pt-5">
+    <ul class="list-unstyled m-0">
+      <br>
+     
+      <li><a href="{{ url_for('dashboard') }}" class="d-block py-3 px-3 text-white "><i class="ri-dashboard-line me-2"></i>Dashboard</a></li>
+      <li><a href="{{ url_for('customer') }}" class="d-block py-3 px-3 text-white"><i class="ri-user-line me-2"></i>Customer</a></li>
+      <li><a href="{{ url_for('supplier') }}" class="d-block py-3 px-3 text-white"><i class="ri-truck-line me-2"></i>Suppliers</a></li>
+      <li><a href="{{ url_for('purchase') }}" class="d-block py-3 px-3 text-white"><i class="ri-shopping-cart-line me-2"></i>Purchase</a></li>
+      <li><a href="{{ url_for('profit') }}" class="d-block py-3 px-3 text-white"><i class="ri-line-chart-line me-2"></i>Profit of sales</a></li>
+      <li><a href="{{ url_for('expenses') }}" class="d-block py-3 px-3 text-white"><i class="ri-money-dollar-box-line me-2"></i>Expenses</a></li>
+      <li><a href="{{ url_for('report') }}" class="d-block py-3 px-3 text-white"><i class="ri-file-list-line me-2"></i>Reports</a></li>
+    </ul>
+    <div class="text-center my-3">
+      <a href="{{ url_for('index') }}" class="btn btn-danger w-75 fw-bold">
+        <i class="ri-logout-box-r-line me-1"></i> Logout
+      </a>
+    </div>
+  </div>
+</div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

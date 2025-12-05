@@ -1,0 +1,53 @@
+/* Sidebar gap maintain */
+.main-wrapper {
+  margin-left: 270px; /* Sidebar width */
+  padding: 10px;      /* paddings reduce */
+  min-height: 100vh;
+  background: #f4f6f9;
+  /* min-width: calc(100% - 70px); full width minus sidebar */
+  margin-top: 50px;
+ 
+}
+
+/* Form inputs small size */
+form#salesForm .form-control {
+  font-size: 0.85rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+/* Cards summary box small */
+.row.g-3.mb-4 > .col-md-4 > .card {
+  padding: 1.5rem 1rem;   /* reduce padding */
+  font-size: 0.9rem;
+}
+
+/* Table hover */
+table tbody tr:hover {
+  background-color: #f9f9f9;
+  font-size: 0.9rem;      /* reduce font size for rows */
+}
+
+/* Modal fix */
+.modal.d-none {
+  display: none !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 700px) {
+  .main-wrapper {
+    margin-left: 0;
+    padding: 10px;
+    min-width: 100%;
+  }
+
+  /* Make form inputs full width on mobile */
+  form#salesForm .form-control {
+    font-size: 1rem;
+  }
+
+  /* Cards adjust for mobile */
+  .row.g-3.mb-4 > .col-md-4 {
+    margin-bottom: 10px;
+  }
+}

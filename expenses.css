@@ -1,0 +1,59 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+/* 3D Cards */
+.card-3d {
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-3d:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+
+/* Cards text styling */
+.card-3d h3 {
+  margin: 0 0 10px 0;
+}
+.card-3d ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Form styling */
+#expenseForm input, #expenseForm select, #expenseForm button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#expenseForm button {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#expenseForm button:hover { background: #45a049; }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+th { background: #333; color: #fff; }
+
+/* Charts */
+canvas { max-width: 100%; }

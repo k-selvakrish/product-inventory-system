@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard — Live Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- css -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+  
+</head>
+<body>
+
+<!-- Navbar -->
+{% include 'nav.html' %}
+{% include 'sidebar.html' %}
+
+<!-- Main Content -->
+<main class="container mt-5 pt-5" style="margin-left: 230px; max-width: 1000px;">
+
+  <section style="max-width: 1000px;">
+
+  <!-- Bootstrap -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTables CSS + Buttons -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
+  
+</head>
+
+<div class="container py-4">
+  <h3>Selva — Reports Dashboard</h3>
+  <!-- <p class="text-muted">Filter by Category → Supplier → Product, Date From / To. Export: CSV / Excel / PDF / Print</p> -->
+
+  <ul class="nav nav-tabs" id="mainTabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#suppliersTab">Suppliers</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#customersTab">Customers</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#purchasesTab">Purchases</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#expensesTab">Expenses</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#profitTab">Profit of Sales</button></li>
+  </ul>
+
+  <div class="tab-content mt-3">
+    <!-- Filter Row -->
+    <div id="filterRow" class="mb-3 filters">
+      <select id="filterCategory" class="form-select form-select-sm"><option value="">All Categories</option></select>
+      <select id="filterSupplier" class="form-select form-select-sm"><option value="">All Suppliers</option></select>
+      <select id="filterProduct" class="form-select form-select-sm"><option value="">All Products</option></select>
+      <input id="dateFrom" type="date" class="form-control form-control-sm" />
+      <input id="dateTo" type="date" class="form-control form-control-sm" />
+      <button id="btnApply" class="btn btn-sm btn-primary">Apply</button>
+      <button id="btnReset" class="btn btn-sm btn-outline-secondary">Reset</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-pane fade show active" id="suppliersTab">
+      <div class="mb-2 d-flex justify-content-between">
+        <h5>Suppliers</h5>
+        <div><a class="btn btn-sm btn-outline-secondary" href="/supplier_form">Add Supplier</a></div>
+      </div>
+      <table id="tblSuppliers" class="display" style="width:100%">
+        <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Contact</th><th>Phone</th><th>Address</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="customersTab">
+      <div class="mb-2 d-flex justify-content-between">
+        <h5>Customers</h5>
+        <div><a class="btn btn-sm btn-outline-secondary" href="/customer_form">Add Customer</a></div>
+      </div>
+      <table id="tblCustomers" class="display" style="width:100%">
+        <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Address</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="purchasesTab">
+      <div class="mb-2 d-flex justify-content-between">
+        <h5>Purchases</h5>
+        <div><a class="btn btn-sm btn-outline-secondary" href="/purchase_form">Add Purchase</a></div>
+      </div>
+      <table id="tblPurchases" class="display" style="width:100%">
+        <thead><tr><th>ID</th><th>Date</th><th>Bill No</th><th>Supplier</th><th>Product</th><th>Amount</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="expensesTab">
+      <div class="mb-2 d-flex justify-content-between">
+        <h5>Expenses</h5>
+        <div><a class="btn btn-sm btn-outline-secondary" href="/expenses_form">Add Expense</a></div>
+      </div>
+      <table id="tblExpenses" class="display" style="width:100%">
+        <thead><tr><th>ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="profitTab">
+      <div class="mb-2 d-flex justify-content-between">
+        <h5>Profit of Sales (monthly)</h5>
+      </div>
+      <table id="tblProfit" class="display" style="width:100%">
+        <thead><tr><th>Period</th><th>Total Sales</th><th>Total Purchases</th><th>Total Expenses</th><th>Gross Profit</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main JS -->
+ <script src="{{ url_for('static', filename='js/report.js') }}"></script>
+</body>
+</html>
